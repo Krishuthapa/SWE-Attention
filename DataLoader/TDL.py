@@ -10,6 +10,9 @@ import sys
 
 import math
 
+current_directory = os.getcwd()
+data_import_path = current_directory + "/DataLoader/Data/"
+
 
 class TemporalDataLoader:
     
@@ -197,23 +200,18 @@ class TemporalDataLoader:
         
         test_inputs_1 = self.model_inputs[filtered_dates_indices[test_yr_indices_1]]
         test_outputs_1 = self.model_outputs[filtered_dates_indices[test_yr_indices_1]]
-        test_dates_1 = filtered_dates[test_yr_indices_1]
         
         test_inputs_2 = self.model_inputs[filtered_dates_indices[test_yr_indices_2]]
         test_outputs_2 = self.model_outputs[filtered_dates_indices[test_yr_indices_2]]
-        test_dates_2 = filtered_dates[test_yr_indices_2]
-
+        
         test_inputs_3 = self.model_inputs[filtered_dates_indices[test_yr_indices_3]]
         test_outputs_3 = self.model_outputs[filtered_dates_indices[test_yr_indices_3]]
-        test_dates_3 = filtered_dates[test_yr_indices_3]
-
+        
         test_inputs_4 = self.model_inputs[filtered_dates_indices[test_yr_indices_4]]
         test_outputs_4 = self.model_outputs[filtered_dates_indices[test_yr_indices_4]]
-        test_dates_4 = filtered_dates[test_yr_indices_4]
-
+        
         test_inputs_5 = self.model_inputs[filtered_dates_indices[test_yr_indices_5]]
         test_outputs_5 = self.model_outputs[filtered_dates_indices[test_yr_indices_5]]
-        test_dates_5 = filtered_dates[test_yr_indices_5]
         
         testing_data_input_1 = []
         testing_data_output_1 = []
@@ -282,16 +280,16 @@ class TemporalDataLoader:
         self.model_inputs, self.model_outputs = self.getModelInputsAndOutputs()
 
     def __init__(self):
-        self.VE_37_daily = pd.read_csv('./Data/VE_37_Collection.csv')
-        self.VE_19_daily = pd.read_csv('./Data/VE_19_Collection.csv')
-        self.TB_diff_daily = pd.read_csv('./Data/TB_Diff_Collection.csv')
+        self.VE_37_daily = pd.read_csv('{}VE_37_Collection.csv'.format(data_import_path))
+        self.VE_19_daily = pd.read_csv('{}VE_19_Collection.csv'.format(data_import_path))
+        self.TB_diff_daily = pd.read_csv('{}TB_Diff_Collection.csv'.format(data_import_path))
 
-        self.Precip_daily = pd.read_csv('./Data/Precipitation_Collection.csv')
-        self.Max_temp_daily = pd.read_csv('./Data/Max_Temp_Collection.csv')
-        self.Min_temp_daily = pd.read_csv('./Data/Min_Temp_Collection.csv')
-        self.Obs_temp_daily = pd.read_csv('./Data/Obs_Temp_Collection.csv')
+        self.Precip_daily = pd.read_csv('{}Precipitation_Collection.csv'.format(data_import_path))
+        self.Max_temp_daily = pd.read_csv('{}Max_Temp_Collection.csv'.format(data_import_path))
+        self.Min_temp_daily = pd.read_csv('{}Min_Temp_Collection.csv'.format(data_import_path))
+        self.Obs_temp_daily = pd.read_csv('{}Obs_Temp_Collection.csv'.format(data_import_path))
         
-        self.snotel_locations_info = pd.read_csv('./Data/Snotel_Locations_Filtered_v3.csv')
+        self.snotel_locations_info = pd.read_csv('{}Snotel_Locations_Filtered_v3.csv'.format(data_import_path))
         self.snotel_locations_info['Southness'] = [ math.sin(value['Slope_tif1_x']) * math.cos(value['Aspect_tif_x']) for index,value in self.snotel_locations_info.iterrows()]
         
         self.VE_37_daily = self.normalizeCols(self.VE_37_daily , list(self.snotel_locations_info['Station Name'].values))
@@ -305,58 +303,58 @@ class TemporalDataLoader:
         
         # Averaged data of the snotel locations.
 
-        self.VE_37_data = pd.read_csv('./Data/VE_37_data_avg.csv')
+        self.VE_37_data = pd.read_csv('{}VE_37_data_avg.csv'.format(data_import_path))
         self.VE_37_data = self.normalizeCols(self.VE_37_data , list(self.snotel_locations_info['Station Name'].values))
         
-        self.VE_19_data = pd.read_csv('./Data/VE_19_data_avg.csv')
+        self.VE_19_data = pd.read_csv('{}VE_19_data_avg.csv'.format(data_import_path))
         self.VE_19_data = self.normalizeCols(self.VE_19_data , list(self.snotel_locations_info['Station Name'].values))
         
-        self.TB_diff_data = pd.read_csv('./Data/TB_diff_data_avg.csv')
+        self.TB_diff_data = pd.read_csv('{}TB_diff_data_avg.csv'.format(data_import_path))
         self.TB_diff_data = self.normalizeCols(self.TB_diff_data , list(self.snotel_locations_info['Station Name'].values))
         
 
-        self.Precip_data_avg = pd.read_csv('./Data/Precipitation_data_avg.csv')
+        self.Precip_data_avg = pd.read_csv('{}Precipitation_data_avg.csv'.format(data_import_path))
         self.Precip_data_avg = self.normalizeCols(self.Precip_data_avg , list(self.snotel_locations_info['Station Name'].values))
         
-        self.Max_temp_data_avg = pd.read_csv('./Data/Max_temp_data_avg.csv')
+        self.Max_temp_data_avg = pd.read_csv('{}Max_temp_data_avg.csv'.format(data_import_path))
         self.Max_temp_data_avg = self.normalizeCols(self.Max_temp_data_avg , list(self.snotel_locations_info['Station Name'].values))
         
         
-        self.Min_temp_data_avg = pd.read_csv('./Data/Min_temp_data_avg.csv')
+        self.Min_temp_data_avg = pd.read_csv('{}Min_temp_data_avg.csv'.format(data_import_path))
         self.Min_temp_data_avg = self.normalizeCols(self.Min_temp_data_avg , list(self.snotel_locations_info['Station Name'].values))
         
-        self.Obs_temp_data_avg = pd.read_csv('./Data/Obs_temp_data_avg.csv')
+        self.Obs_temp_data_avg = pd.read_csv('{}Obs_temp_data_avg.csv'.format(data_import_path))
         self.Obs_temp_data_avg = self.normalizeCols(self.Obs_temp_data_avg , list(self.snotel_locations_info['Station Name'].values))
         
         
         # Historical data of the snotel locations.
 
-        self.VE_37_data_H_3 = pd.read_csv('./Data/VE_37_data_avg_H_3.csv')
+        self.VE_37_data_H_3 = pd.read_csv('{}VE_37_data_avg_H_3.csv'.format(data_import_path))
         self.VE_37_data_H_3 = self.normalizeCols(self.VE_37_data_H_3 , list(self.snotel_locations_info['Station Name'].values))
         
-        self.VE_19_data_H_3 = pd.read_csv('./Data/VE_19_data_avg_H_3.csv')
+        self.VE_19_data_H_3 = pd.read_csv('{}VE_19_data_avg_H_3.csv'.format(data_import_path))
         self.VE_19_data_H_3 = self.normalizeCols(self.VE_19_data_H_3 , list(self.snotel_locations_info['Station Name'].values))
         
-        self.TB_diff_data_H_3 = pd.read_csv('./Data/TB_Diff_data_avg_H_3.csv')
+        self.TB_diff_data_H_3 = pd.read_csv('{}TB_Diff_data_avg_H_3.csv'.format(data_import_path))
         self.TB_diff_data_H_3 = self.normalizeCols(self.TB_diff_data_H_3 , list(self.snotel_locations_info['Station Name'].values))
         
 
-        self.Precip_data_data_avg_H_3 = pd.read_csv('./Data/Precip_data_avg_H_3.csv')
+        self.Precip_data_data_avg_H_3 = pd.read_csv('{}Precip_data_avg_H_3.csv'.format(data_import_path))
         self.Precip_data_data_avg_H_3 = self.normalizeCols(self.Precip_data_data_avg_H_3 , list(self.snotel_locations_info['Station Name'].values))
         
-        self.Max_temp_data_avg_H_3 = pd.read_csv('./Data/Max_Temp_data_avg_H_3.csv')
+        self.Max_temp_data_avg_H_3 = pd.read_csv('{}Max_Temp_data_avg_H_3.csv'.format(data_import_path))
         self.Max_temp_data_avg_H_3 = self.normalizeCols(self.Max_temp_data_avg_H_3 , list(self.snotel_locations_info['Station Name'].values))
         
-        self.Min_temp_data_avg_H_3 = pd.read_csv('./Data/Min_Temp_data_avg_H_3.csv')
+        self.Min_temp_data_avg_H_3 = pd.read_csv('{}Min_Temp_data_avg_H_3.csv'.format(data_import_path))
         self.Min_temp_data_avg_H_3 = self.normalizeCols(self.Min_temp_data_avg_H_3 , list(self.snotel_locations_info['Station Name'].values))
         
-        self.Obs_temp_data_avg_H_3 = pd.read_csv('./Data/Obs_Temp_data_avg_H_3.csv')
+        self.Obs_temp_data_avg_H_3 = pd.read_csv('{}Obs_Temp_data_avg_H_3.csv'.format(data_import_path))
         self.Obs_temp_data_avg_H_3 = self.normalizeCols(self.Obs_temp_data_avg_H_3 , list(self.snotel_locations_info['Station Name'].values))
         
         
         # SWE values
         
-        self.SWE_values_data = pd.read_csv('./Data/SWE_Collection.csv')
+        self.SWE_values_data = pd.read_csv('{}SWE_Collection.csv'.format(data_import_path))
 
         self.SWE_values_data = self.SWE_values_data.loc[:, self.SWE_values_data.columns.isin(self.snotel_locations_info['Station Name'].to_list() + ['Date'])]
        
@@ -367,21 +365,4 @@ class TemporalDataLoader:
         self.year_3 = 2017
         self.year_4 = 2016
         self.year_5 = 2007
-
-
-
-tp_dataLoader = TemporalDataLoader()
-
-tp_dataLoader.cleanDataJunk()
-tp_dataLoader.prepareInputsAndOutputs()
-
-tp_training_input , tp_training_output = tp_dataLoader.getTrainingData()
-tp_testing_data_1,tp_testing_data_2, tp_testing_data_3 , tp_testing_data_4,tp_testing_data_5 = tp_dataLoader.getTestingData()
-
-
-tp_testing_input_1 , tp_testing_output_1 = tp_testing_data_1
-tp_testing_input_2 , tp_testing_output_2 = tp_testing_data_2
-tp_testing_input_3 , tp_testing_output_3 = tp_testing_data_3
-tp_testing_input_4 , tp_testing_output_4 = tp_testing_data_4
-tp_testing_input_5 , tp_testing_output_5 = tp_testing_data_5
-
+        
