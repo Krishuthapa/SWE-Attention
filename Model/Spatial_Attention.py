@@ -160,7 +160,7 @@ class SWETransformer(nn.Module):
         
         # Applying the transformer layer.
 
-        x = self.transformers_1(embed_input_x)
+        x = self.transformers_1(x)
         
         x = x.reshape(-1, self.model_dim)
         embed_input_x = embed_input_x.reshape(-1,self.model_dim)
