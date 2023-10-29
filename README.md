@@ -1,8 +1,8 @@
 # Attention-based Models for Snow-Water Equivalent Prediction
-## Krishu K Thapa^1^, Bhupinderjeet Singh^1^, Supriya Savalkar^1^, Alan Fern^2^, Kirti Rajagopalan^1^, Ananth Kalyanaraman^1^
-### ^1^ Washington State University, Pullman, WA. ^2^ Oregon State University, Corvallis, OR.
+## Krishu K Thapa<sup>1</sup>, Bhupinderjeet Singh<sup>1</sup>, Supriya Savalkar<sup>1</sup>, Alan Fern<sup>2</sup>, Kirti Rajagopalan<sup>1</sup>, Ananth Kalyanaraman<sup>1</sup>
+### <sup>1</sup> Washington State University, Pullman, WA. <sup>2</sup> Oregon State University, Corvallis, OR.
 
-Predicting the SWE value for multiple SNOTEL locations in Western US using the Attention Models
+Predicting the SWE value for multiple SNOTEL locations in the Western US using the Attention Models
 
 
 ## Model Folder
