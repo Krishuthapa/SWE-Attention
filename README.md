@@ -21,3 +21,10 @@ Predicting the SWE value for multiple SNOTEL locations in the Western US using t
 - TDL.py: This is the data loader file for the temporal model. It returns the training and testing data for the Temporal Attention model.
 - feature_prep.py: This file processes all the raw data and generates the processed csv files of data which are used by the data loaders for
                     spatial and attention model.
+
+
+## Citation
+
+If you use our idea in your research, please cite:
+
+Thapa, Krishu & Singh, Bhupinderjeet & Savalkar, Supriya & Fern, Alan & Rajagopalan, Kirti & Kalyanaraman, Ananth. (2024). Attention-Based Models for Snow-Water Equivalent Prediction. Proceedings of the AAAI Conference on Artificial Intelligence. 38. 22969-22975. 10.1609/aaai.v38i21.30337. https://doi.org/10.1609/aaai.v38i21.30337
